@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marrow House | Annotated Gothic Classics</title>
+    <meta name="description" content="Marrow House publishes annotated editions of classic Gothic literature with scholarly introductions, endnotes, character guides, timelines, and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --crimson: #8b1a1a;
+            --crimson-light: #a82828;
+            --gold: #c4a055;
+            --gold-dim: #9a7d3d;
+            --cream: #e8e0d4;
+            --cream-dim: #b0a898;
+            --silver: #c8c0b8;
+            --bone: #d4ccc0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Crimson Pro', Georgia, serif;
+            background: var(--bg-primary);
+            color: var(--cream);
+            line-height: 1.7;
+            font-size: 18px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(139, 26, 26, 0.3);
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'IM Fell English', serif;
+            font-size: 1.3rem;
+            color: var(--cream);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links a {
+            color: var(--cream-dim);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            letter-spacing: 0.03em;
+        }
+
+        .nav-links a:hover { color: var(--gold); }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            background:
+                radial-gradient(ellipse at 50% 30%, rgba(139, 26, 26, 0.12) 0%, transparent 60%),
+                var(--bg-primary);
+        }
+
+        .hero-logo {
+            width: 180px;
+            height: auto;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 40px rgba(139, 26, 26, 0.3));
+        }
+
+        .hero h1 {
+            font-family: 'IM Fell English', serif;
+            font-size: 3.5rem;
+            color: var(--cream);
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+            font-weight: normal;
+        }
+
+        .hero-tagline {
+            font-family: 'IM Fell English', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            font-style: italic;
+            margin-bottom: 2rem;
+            letter-spacing: 0.04em;
+        }
+
+        .hero-description {
+            max-width: 600px;
+            color: var(--cream-dim);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: var(--crimson);
+            margin: 3rem auto;
+        }
+
+        /* ===== SECTIONS ===== */
+        section { padding: 5rem 2rem; }
+
+        .section-title {
+            font-family: 'IM Fell English', serif;
+            font-size: 2.2rem;
+            text-align: center;
+            color: var(--cream);
+            letter-spacing: 0.06em;
+            margin-bottom: 1rem;
+            font-weight: normal;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--cream-dim);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        /* ===== BOOKS ===== */
+        #books { background: var(--bg-secondary); }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .book-card {
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .book-card:hover { transform: translateY(-8px); }
+
+        .book-cover {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 4px;
+            box-shadow:
+                0 8px 30px rgba(0, 0, 0, 0.5),
+                0 0 1px rgba(139, 26, 26, 0.3);
+            transition: box-shadow 0.3s;
+        }
+
+        .book-card:hover .book-cover {
+            box-shadow:
+                0 12px 40px rgba(0, 0, 0, 0.6),
+                0 0 20px rgba(139, 26, 26, 0.2);
+        }
+
+        .book-title {
+            font-family: 'IM Fell English', serif;
+            font-size: 1.2rem;
+            color: var(--cream);
+            margin-top: 1.2rem;
+            letter-spacing: 0.04em;
+        }
+
+        .book-author {
+            color: var(--cream-dim);
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+
+        .book-badge {
+            display: inline-block;
+            margin-top: 0.6rem;
+            padding: 0.25rem 0.8rem;
+            border: 1px solid var(--crimson);
+            color: var(--crimson-light);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* ===== WHAT'S INSIDE ===== */
+        #editions { background: var(--bg-primary); }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .feature {
+            padding: 1.5rem;
+            border-left: 2px solid var(--crimson);
+            background: var(--bg-card);
+        }
+
+        .feature h3 {
+            font-family: 'IM Fell English', serif;
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: normal;
+        }
+
+        .feature p {
+            color: var(--cream-dim);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ===== ABOUT ===== */
+        #about { background: var(--bg-secondary); }
+
+        .about-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            color: var(--cream-dim);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .about-content em { color: var(--gold); }
+
+        /* ===== COMING SOON ===== */
+        #coming-soon { background: var(--bg-primary); }
+
+        .coming-soon-text {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            color: var(--cream-dim);
+            font-size: 1.1rem;
+        }
+
+        .catalog-count {
+            font-family: 'IM Fell English', serif;
+            font-size: 3rem;
+            color: var(--crimson-light);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(139, 26, 26, 0.2);
+            background: var(--bg-primary);
+        }
+
+        .footer-brand {
+            font-family: 'IM Fell English', serif;
+            font-size: 1.1rem;
+            color: var(--cream-dim);
+            margin-bottom: 0.5rem;
+        }
+
+        footer p {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--gold-dim);
+            text-decoration: none;
+        }
+
+        footer a:hover { color: var(--gold); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.4rem; }
+            .hero-tagline { font-size: 1.1rem; }
+            .hero-logo { width: 140px; }
+            .nav-links { display: none; }
+            .books-grid { grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            section { padding: 3rem 1.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.8rem; }
+            .books-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="nav-brand">Marrow House</a>
+        <div class="nav-links">
+            <a href="#books">Books</a>
+            <a href="#editions">Our Editions</a>
+            <a href="#about">About</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <img src="images/logo.png" alt="Marrow House" class="hero-logo">
+        <h1>Marrow House</h1>
+        <p class="hero-tagline">Annotated Gothic Classics</p>
+        <div class="divider"></div>
+        <p class="hero-description">
+            We publish carefully annotated editions of classic Gothic literature.
+            Each title includes a scholarly introduction, endnotes, character guide,
+            timeline, glossary, discussion questions, and more.
+        </p>
+    </section>
+
+    <section id="books">
+        <h2 class="section-title">Our Books</h2>
+        <p class="section-subtitle">Each edition features thousands of words of original scholarly material.</p>
+        <div class="books-grid">
+            <div class="book-card"><img src="images/dracula.jpg" alt="Dracula by Bram Stoker" class="book-cover"></div>
+            <div class="book-card"><img src="images/frankenstein.jpg" alt="Frankenstein by Mary Shelley" class="book-cover"></div>
+            <div class="book-card"><img src="images/heights.jpg" alt="Wuthering Heights by Emily Bront&euml;" class="book-cover"></div>
+            <div class="book-card"><img src="images/jekyll.jpg" alt="Dr Jekyll and Mr Hyde by Robert Louis Stevenson" class="book-cover"></div>
+            <div class="book-card"><img src="images/dorian.jpg" alt="The Picture of Dorian Gray by Oscar Wilde" class="book-cover"></div>
+            <div class="book-card"><img src="images/carmilla.jpg" alt="Carmilla by Sheridan Le Fanu" class="book-cover"></div>
+            <div class="book-card"><img src="images/screw.jpg" alt="The Turn of the Screw by Henry James" class="book-cover"></div>
+            <div class="book-card"><img src="images/usher.jpg" alt="The Fall of the House of Usher by Edgar Allan Poe" class="book-cover"></div>
+            <div class="book-card"><img src="images/hollow.jpg" alt="The Legend of Sleepy Hollow by Washington Irving" class="book-cover"></div>
+            <div class="book-card"><img src="images/otranto.jpg" alt="The Castle of Otranto by Horace Walpole" class="book-cover"></div>
+            <div class="book-card"><img src="images/moonstone.jpg" alt="The Moonstone by Wilkie Collins" class="book-cover"></div>
+            <div class="book-card"><img src="images/vampyre.jpg" alt="The Vampyre by John Polidori" class="book-cover"></div>
+            <div class="book-card"><img src="images/yellow.jpg" alt="The King in Yellow by Robert W. Chambers" class="book-cover"></div>
+            <div class="book-card"><img src="images/oeb.jpg" alt="The Old English Baron by Clara Reeve" class="book-cover"></div>
+            <div class="book-card"><img src="images/wieland.jpg" alt="Wieland by Charles Brockden Brown" class="book-cover"></div>
+            <div class="book-card"><img src="images/udolpho1.jpg" alt="The Mysteries of Udolpho Vol. 1 by Ann Radcliffe" class="book-cover"></div>
+            <div class="book-card"><img src="images/udolpho2.jpg" alt="The Mysteries of Udolpho Vol. 2 by Ann Radcliffe" class="book-cover"></div>
+            <div class="book-card"><img src="images/udolpho3.jpg" alt="The Mysteries of Udolpho Vol. 3 by Ann Radcliffe" class="book-cover"></div>
+            <div class="book-card"><img src="images/udolpho4.jpg" alt="The Mysteries of Udolpho Vol. 4 by Ann Radcliffe" class="book-cover"></div>
+        </div>
+    </section>
+
+    <section id="editions">
+        <h2 class="section-title">What's Inside</h2>
+        <p class="section-subtitle">Every Marrow House edition is built for readers who want more than just the text.</p>
+        <div class="features-grid">
+            <div class="feature">
+                <h3>Introduction</h3>
+                <p>Original scholarly essay placing the novel in its historical and literary context.</p>
+            </div>
+            <div class="feature">
+                <h3>Endnotes</h3>
+                <p>40&ndash;60+ explanatory notes clarifying archaic language, historical references, and literary allusions.</p>
+            </div>
+            <div class="feature">
+                <h3>Character Guide</h3>
+                <p>Detailed profiles of major and supporting characters with page-specific observations.</p>
+            </div>
+            <div class="feature">
+                <h3>Timeline</h3>
+                <p>Chronology of the author's life, the novel's composition, and key historical events.</p>
+            </div>
+            <div class="feature">
+                <h3>Glossary</h3>
+                <p>Definitions of period-specific vocabulary, archaic terms, and cultural references.</p>
+            </div>
+            <div class="feature">
+                <h3>Discussion Questions</h3>
+                <p>Thoughtful questions for book clubs, classrooms, and independent study.</p>
+            </div>
+            <div class="feature">
+                <h3>Contemporary Reviews</h3>
+                <p>Excerpts from original reviews published when the novel first appeared.</p>
+            </div>
+            <div class="feature">
+                <h3>Further Reading</h3>
+                <p>Curated bibliography of critical works, biographies, and related texts.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">About Marrow House</h2>
+        <div class="about-content">
+            <p>
+                Marrow House publishes annotated editions of classic literature for
+                readers who believe great books deserve more than bare text.
+            </p>
+            <p>
+                Our editorial team draws on historical research, critical analysis,
+                and close reading of the source text to produce editions that are
+                <em>accessible, informative, and faithful to the original work</em>.
+            </p>
+            <p>
+                Every title in our catalog receives the same treatment: a full scholarly
+                apparatus including introduction, endnotes, character guide, timeline,
+                glossary, discussion questions, contemporary reviews, and further reading.
+            </p>
+        </div>
+    </section>
+
+    <section id="coming-soon">
+        <h2 class="section-title">Growing Catalog</h2>
+        <div class="coming-soon-text">
+            <span class="catalog-count">73</span>
+            <p>titles in the Marrow House Classics series, spanning Gothic horror, Victorian fiction, and supernatural literature. New editions released regularly.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-brand">Marrow House</p>
+        <p>&copy; 2026 Marrow House. All original content &copy; Marrow House.</p>
+        <p style="margin-top: 0.5rem;">
+            <a href="mailto:contact@marrowhousebooks.com">contact@marrowhousebooks.com</a>
+        </p>
+    </footer>
+
+</body>
+</html>
